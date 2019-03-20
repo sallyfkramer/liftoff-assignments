@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+
+<body class="container">
+
+<h1 th:text="${title}">Default Title</h1>
+
+<nav th:replace="fragments :: navigation"></nav>
+<nav th:replace="fragments :: set-up-navigation"></nav>
+
+
+<p th:unless="${employees} and ${employees.size()}">no employees yet</p>
+
+<table class="table">
+    <tr>
+        <th>Last Name</th>
+        <th>First Name</th>
+
+    </tr>
+
+    <tr th:each="employee : ${employees}">
+        <td> <a th:href="'/employee/view/' + ${employee.id}" th:text="${employee.lastName}"></a></td>
+
+        <td th:text="${employee.firstName}"></td>
+
+
+    </tr>
+
+</table>
+
+<a href="/employee/add">Add Employee</a> |
+<a href="/employee/remove">Remove Employee</a>
+
+
+</body>
+</html>
